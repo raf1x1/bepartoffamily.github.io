@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap" rel="stylesheet" />
+  <title>racist</title>
+</head>
+
+<body>
+  <main class="container">
+    <img class="black-img" src="black.jpg" alt="black" />
+    <p class="title">Wanna be a part of black family?</p>
+    <div class="buttons">
+      <button type="button" class="btn btn--yes">Yes</button>
+      <button type="button" class="btn btn--no">No</button>
+    </div>
+    <div class="gif-container hidden">
+      <img class="success-gif" src="z.gif" alt="Success GIF" />
+    </div>
+  </main>
+
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    background-color: #fff0f6;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: bold;
+  }
+  
+  .container {
+    height: 100vh;
+    margin: 0 auto;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .black-img {
+    width: 30rem;
+    height: 30rem;
+    margin-bottom: 2rem;
+  }
+  
+  .title {
+    font-size: 3.6rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 1.5rem 2.5rem;
+    border: none;
+    border-radius: 4px;
+  
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .btn--yes {
+    background-color: black;
+  }
+  
+  .btn--no {
+    background-color: red
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .gif-container {
+      margin-top: 20px;
+      text-align: center;
+  }
+
+  .success-gif {
+      width: 600px; 
+      height: auto;
+  }
+  </style>
+  <script>
+    "use strict";
+
+    const titleElement = document.querySelector(".title");
+    const buttonsContainer = document.querySelector(".buttons");
+    const yesButton = document.querySelector(".btn--yes");
+    const noButton = document.querySelector(".btn--no");
+    const blackImg = document.querySelector(".black-img");
+    const gifContainer = document.querySelector(".gif-container");
+
+    const MAX_IMAGES = 9;
+
+    let play = true;
+    let noCount = 0;
+
+    yesButton.addEventListener("click", function () {
+      titleElement.innerHTML = "WELCOME TO NIGGA FAMILY!!! . We are thrilled to have you as part of our lives and share in the joys of family bonds. Your presence adds warmth, laughter, and love to our home, and we look forward to creating cherished memories together.";
+      buttonsContainer.classList.add("hidden");
+      gifContainer.classList.remove("hidden");
+      changeImage("yes");
+    });
+
+    noButton.addEventListener("click", function () {
+      if (play) {
+        noCount++;
+        const imageIndex = Math.min(noCount, MAX_IMAGES);
+        changeImage(imageIndex);
+        resizeYesButton();
+        updateNoButtonText();
+        if (noCount === MAX_IMAGES) {
+          play = false;
+        }
+      }
+    });
+
+    function resizeYesButton() {
+      const computedStyle = window.getComputedStyle(yesButton);
+      const fontSize = parseFloat(computedStyle.getPropertyValue("font-size"));
+      const newFontSize = fontSize * 1.6;
+
+      yesButton.style.fontSize = `${newFontSize}px`;
+    }
+
+    function generateMessage(noCount) {
+      const messages = [
+        "No",
+        "Are you sure nigga?",
+        "nigga c'mon",
+        "damn please nig- :(",
+        "please be black",
+        "u'r racist if u dont click yes",
+        "NIGGA NIGGA NIIGGAAAAAAAAAAAAAAAA! NIGGERRR ! click the yes",
+        "EVERYONE RACIST IS BORN !",
+        "please be black we will become family"
+        
+      ];
+
+      const messageIndex = Math.min(noCount, messages.length - 1);
+      return messages[messageIndex];
+    }
+
+    function changeImage(image) {
+      blackImg.src = `black.jpg`;
+    }
+
+    function updateNoButtonText() {
+      noButton.innerHTML = generateMessage(noCount);
+    }
+  </script>
+</body>
+
+</html>
